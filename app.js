@@ -32,6 +32,7 @@ app.get('/about',middleware,(req, res) => {
   res.send('Hello world about!')
 })
 app.get('/contact', (req, res) => {
+  
   res.send('Hello world about contact!')
 })
 app.get('signing', (req, res) => {

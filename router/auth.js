@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require('bcrypt');
 const router = express.Router();
+var cookie = require('cookie');
 require("../db/conn");
 const User = require("../model/userSchema");
 
@@ -73,6 +74,11 @@ router.post("/singin", async (req, res) => {
 
     const token = await userLogin.generateAuthToken();
     console.log(token)
+
+    res.cookie("jwtoken",token,{
+      expires:new Date(Date.now() +25892000000),
+      httpOnly:true
+    });
 
       if (isMatch) {
         res.status(400).json({ error: "Invalid Credientials pass" });
